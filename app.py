@@ -7,8 +7,6 @@ from Routes.external_api import external_bp
 from Routes.customers import users_bp
 from Routes.orders import orders_bp
 
-
-
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
@@ -27,8 +25,3 @@ def create_app():
         db.create_all()
 
     return app
-
-app = create_app()
-
-if __name__ == "__main__":
-    app.run(debug=True)
