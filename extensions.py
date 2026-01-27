@@ -4,4 +4,8 @@ from flask_cors import CORS
 
 db = SQLAlchemy()
 jwt = JWTManager()
-cors = CORS()
+
+cors = CORS(
+    resources={r"/api/*": {"origins": "*"}},
+    supports_credentials=True
+)
