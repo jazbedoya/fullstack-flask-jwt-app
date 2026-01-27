@@ -8,6 +8,13 @@ auth_bp = Blueprint("auth", __name__)
 @auth_bp.route("/register", methods=["POST"])
 def register():
     data = request.json
+
+    #validar si el email ya existe
+    existing_user = User.query.filter_by(email=data["email"]).first()
+    if existing_user:
+        return jsonify({"msg": "Email already registered"}), 400
+
+    #crear usuario
     user = User(email=data["email"], role=data.get("role", "user"))
     user.set_password(data["password"])
 
@@ -26,9 +33,9 @@ def login():
         return jsonify({"msg": "Bad credentials"}), 401
 
     token = create_access_token(
-        identity=str(user.id),  #string      
+        identity=str(user.id),
         additional_claims={
-            "role": user.role         
+            "role": user.role
         }
     )
 
