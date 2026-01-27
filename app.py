@@ -13,11 +13,17 @@ def create_app():
 
     # CORS
     cors.init_app(
-        app,
-        resources={r"/api/*": {"origins": "*"}},
-        supports_credentials=True
-    )
+    app,
+    origins=[
+        "https://fullstack-flask-jwt-frontend.onrender.com",
+        "http://localhost:5173"
+    ],
+    supports_credentials=True,
+    allow_headers=["Content-Type", "Authorization"],
+    methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+)
 
+   
     db.init_app(app)
     jwt.init_app(app)
 
