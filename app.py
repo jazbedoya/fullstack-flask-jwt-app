@@ -11,7 +11,7 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
 
-    # 🔥 CORS BIEN CONFIGURADO
+    # CORS
     cors.init_app(
         app,
         resources={r"/api/*": {"origins": "*"}},
@@ -27,6 +27,13 @@ def create_app():
     app.register_blueprint(users_bp, url_prefix="/api")
     app.register_blueprint(orders_bp, url_prefix="/api")
 
+    # 🔥 ESTO CREA LAS TABLAS
+    with app.app_context():
+        db.create_all()
+
     return app
 
 app = create_app()
+
+if __name__ == "__main__":
+    app.run(debug=True)
