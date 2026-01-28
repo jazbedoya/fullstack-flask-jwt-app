@@ -4,3 +4,4 @@ flask-jwt-extended
 flask-sqlalchemy
 gunicorn
 requests
+psycopg2-binary
