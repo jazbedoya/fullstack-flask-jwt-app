@@ -8,7 +8,9 @@ from Routes.items import items_bp
 from Routes.external_api import external_bp
 from Routes.customers import users_bp
 from Routes.orders import orders_bp
+from dotenv import load_dotenv
 
+load_dotenv()
 
 def create_app():
     app = Flask(__name__)
@@ -18,6 +20,8 @@ def create_app():
 
     db.init_app(app)
     jwt.init_app(app)
+
+
 
     app.register_blueprint(auth_bp, url_prefix="/api")
     app.register_blueprint(items_bp, url_prefix="/api")

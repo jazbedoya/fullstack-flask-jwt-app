@@ -5,3 +5,5 @@ flask-sqlalchemy
 gunicorn
 requests
 psycopg2-binary
+python-dotenv
+
