@@ -53,3 +53,5 @@ def delete_item(id):
     db.session.commit()
     return jsonify({"msg": "ITEM DELETED"})
 
+
+

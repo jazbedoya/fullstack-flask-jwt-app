@@ -18,11 +18,15 @@ class User(db.Model):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-
 class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.Text)
+    category = db.Column(db.String(50), nullable=False)
+
+  
+
+
 
 
 class Order(db.Model):
